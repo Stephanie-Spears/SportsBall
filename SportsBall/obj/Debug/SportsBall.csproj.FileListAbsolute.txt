@@ -1,0 +1,8 @@
+C:\Users\wolfmac\Desktop\Projects\SportsBall\SportsBall\bin\Debug\data.txt
+C:\Users\wolfmac\Desktop\Projects\SportsBall\SportsBall\bin\Debug\SportsBall.exe.config
+C:\Users\wolfmac\Desktop\Projects\SportsBall\SportsBall\bin\Debug\SportsBall.exe
+C:\Users\wolfmac\Desktop\Projects\SportsBall\SportsBall\bin\Debug\SportsBall.pdb
+C:\Users\wolfmac\Desktop\Projects\SportsBall\SportsBall\obj\Debug\SportsBall.csprojAssemblyReference.cache
+C:\Users\wolfmac\Desktop\Projects\SportsBall\SportsBall\obj\Debug\SportsBall.csproj.CoreCompileInputs.cache
+C:\Users\wolfmac\Desktop\Projects\SportsBall\SportsBall\obj\Debug\SportsBall.exe
+C:\Users\wolfmac\Desktop\Projects\SportsBall\SportsBall\obj\Debug\SportsBall.pdb
