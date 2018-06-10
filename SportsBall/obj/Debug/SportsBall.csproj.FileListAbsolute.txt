@@ -6,3 +6,10 @@ C:\Users\wolfmac\Desktop\Projects\SportsBall\SportsBall\obj\Debug\SportsBall.csp
 C:\Users\wolfmac\Desktop\Projects\SportsBall\SportsBall\obj\Debug\SportsBall.csproj.CoreCompileInputs.cache
 C:\Users\wolfmac\Desktop\Projects\SportsBall\SportsBall\obj\Debug\SportsBall.exe
 C:\Users\wolfmac\Desktop\Projects\SportsBall\SportsBall\obj\Debug\SportsBall.pdb
+C:\Users\Stephanie\Source\Repos\SportsBall\SportsBall\bin\Debug\data.txt
+C:\Users\Stephanie\Source\Repos\SportsBall\SportsBall\bin\Debug\SportsBall.exe.config
+C:\Users\Stephanie\Source\Repos\SportsBall\SportsBall\bin\Debug\SportsBall.exe
+C:\Users\Stephanie\Source\Repos\SportsBall\SportsBall\bin\Debug\SportsBall.pdb
+C:\Users\Stephanie\Source\Repos\SportsBall\SportsBall\obj\Debug\SportsBall.csproj.CoreCompileInputs.cache
+C:\Users\Stephanie\Source\Repos\SportsBall\SportsBall\obj\Debug\SportsBall.exe
+C:\Users\Stephanie\Source\Repos\SportsBall\SportsBall\obj\Debug\SportsBall.pdb
