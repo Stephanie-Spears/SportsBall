@@ -4,8 +4,6 @@ using System.IO;
 
 namespace SportsBall
 {
-    /*Notes: TFS repo name -> wolfiest master*/
-
     internal class Program
     {
         private static void Main(string[] args)
