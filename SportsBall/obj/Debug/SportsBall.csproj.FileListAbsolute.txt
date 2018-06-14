@@ -13,3 +13,4 @@ C:\Users\Stephanie\Source\Repos\SportsBall\SportsBall\bin\Debug\SportsBall.pdb
 C:\Users\Stephanie\Source\Repos\SportsBall\SportsBall\obj\Debug\SportsBall.csproj.CoreCompileInputs.cache
 C:\Users\Stephanie\Source\Repos\SportsBall\SportsBall\obj\Debug\SportsBall.exe
 C:\Users\Stephanie\Source\Repos\SportsBall\SportsBall\obj\Debug\SportsBall.pdb
+C:\Users\Stephanie\Source\Repos\SportsBall\SportsBall\obj\Debug\SportsBall.csprojAssemblyReference.cache
