@@ -9,6 +9,11 @@ namespace SportsBall
         public DateTime GameDate { get; set; }
 
         public string TeamName { get; set; }
+
+        public int Goals { get; set; }
+        public int GoalAttempts { get; set; }
+        public int ShotsOnGoal { get; set; }
+        public int ShotsOffGoal { get; set; }
     }
 
     public enum HomeOrAway
