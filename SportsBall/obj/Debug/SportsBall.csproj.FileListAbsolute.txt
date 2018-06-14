@@ -14,3 +14,8 @@ C:\Users\Stephanie\Source\Repos\SportsBall\SportsBall\obj\Debug\SportsBall.cspro
 C:\Users\Stephanie\Source\Repos\SportsBall\SportsBall\obj\Debug\SportsBall.exe
 C:\Users\Stephanie\Source\Repos\SportsBall\SportsBall\obj\Debug\SportsBall.pdb
 C:\Users\Stephanie\Source\Repos\SportsBall\SportsBall\obj\Debug\SportsBall.csprojAssemblyReference.cache
+C:\Users\Stephanie\Source\Repos\SportsBall\SportsBall\bin\Debug\players.json
+C:\Users\Stephanie\Source\Repos\SportsBall\SportsBall\bin\Debug\SoccerGameResults.csv
+C:\Users\Stephanie\Source\Repos\SportsBall\SportsBall\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Stephanie\Source\Repos\SportsBall\SportsBall\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Stephanie\Source\Repos\SportsBall\SportsBall\obj\Debug\SportsBall.csproj.CopyComplete
