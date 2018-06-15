@@ -17,13 +17,7 @@ namespace SportsBall
 
         public double PossessionPercent { get; set; }
 
-        public double ConversionRate
-        {
-            get
-            {
-                return (double)Goals / (double)GoalAttempts;
-            }
-        }
+        public double ConversionRate => (double)Goals / GoalAttempts;
     }
 
     public enum HomeOrAway

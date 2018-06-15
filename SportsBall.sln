@@ -5,6 +5,11 @@ VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsBall", "SportsBall\SportsBall.csproj", "{D7DB5E29-1BD8-4C52-AFFD-24A2CFE6613B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F6590FD2-4F20-4FFC-9B05-72AD7182F040}"
+	ProjectSection(SolutionItems) = preProject
+		SportsBall\bin\Debug\topten.json = SportsBall\bin\Debug\topten.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
