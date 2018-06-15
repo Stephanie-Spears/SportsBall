@@ -11,27 +11,43 @@ namespace SportsBall
     {
         private static void Main(string[] args)
         {
-            //string currentDirectory = Directory.GetCurrentDirectory();
-            //DirectoryInfo directory = new DirectoryInfo(currentDirectory);
-            //var fileName = Path.Combine(directory.FullName, "SoccerGameResults.csv");
-            //var fileContents = ReadSoccerResults(fileName);
-            //fileName = Path.Combine(directory.FullName, "players.json");
-            //var players = DeserializePlayers(fileName);
-            //var topTenPlayers = GetTopTenPlayers(players);
-            //foreach (var player in topTenPlayers)
-            //{
-            //    List<NewsResult> newsResults = GetNewsForPlayer(string.Format("{0} {1}", player.FirstName, player.LastName));
-            //    foreach (var result in newsResults)
-            //    {
-            //        Console.WriteLine(string.Format("Date: {0:f}, Headline: {1}, Summary: {2}\r\n", result.DatePublished, result.Headline, result.Summary));
-            //        Console.ReadKey();
-            //    }
-            //}
+            string currentDirectory = Directory.GetCurrentDirectory();
+            DirectoryInfo directory = new DirectoryInfo(currentDirectory);
+            var fileName = Path.Combine(directory.FullName, "SoccerGameResults.csv");
+            var fileContents = ReadSoccerResults(fileName);
+            fileName = Path.Combine(directory.FullName, "players.json");
+            var players = DeserializePlayers(fileName);
+            var topTenPlayers = GetTopTenPlayers(players);
+            foreach (var player in topTenPlayers)
+            {
+                List<NewsResult> newsResults = GetNewsForPlayer(string.Format("{0} {1}", player.FirstName, player.LastName));
+                SentimentResponse sentimentResponse = GetSentimentResponse(newsResults);
+                foreach (var sentiment in sentimentResponse.Sentiments)
+                {
+                    foreach (var newsResult in newsResults)
+                    {
+                        if (newsResult.Headline == sentiment.Id)
+                        {
+                            double score;
+                            if (double.TryParse(sentiment.Score, out score))
+                            {
+                                newsResult.SentimentScore = score;
+                            }
 
-            //fileName = Path.Combine(directory.FullName, "topten.json");
-            //SerializePlayersToFile(topTenPlayers, fileName);
-            //Console.WriteLine(GetGoogleHomePage());
-            Console.WriteLine(GetNewsForPlayer("Diego Valeri"));
+                            break;
+                        }
+                    }
+                }
+                foreach (var result in newsResults)
+                {
+                    Console.WriteLine(string.Format("Sentiment Score: {0:p}, Date: {1:f}, Headline: {2}, Summary: {3}\r\n", result.SentimentScore, result.DatePublished, result.Headline, result.Summary));
+                }
+
+                Console.ReadKey();
+            }
+
+            fileName = Path.Combine(directory.FullName, "topten.json");
+            SerializePlayersToFile(topTenPlayers, fileName);
         }
 
         public static string ReadFile(string fileName)
@@ -153,63 +169,47 @@ namespace SportsBall
             }
         }
 
-        //public static List<NewsResult> GetNewsForPlayer(string playerName)
-        public static string GetNewsForPlayer(string playerName)
+        public static List<NewsResult> GetNewsForPlayer(string playerName)
         {
-            //var results = new List<NewsResult>();
+            var results = new List<NewsResult>();
             var webClient = new WebClient();
             webClient.Headers.Add("Ocp-Apim-Subscription-Key", "0f2573c2204648789be5302eee10aa37");
 
             byte[] searchResults = webClient.DownloadData(string.Format(
                 "https://api.cognitive.microsoft.com/bing/v7.0/news/search?q={0}&mkt=en-us", playerName));
-            //var serializer = new JsonSerializer();
+            var serializer = new JsonSerializer();
 
-            //using (var jsonReader = new JsonTextReader(reader))
             using (var stream = new MemoryStream(searchResults))
             using (var reader = new StreamReader(stream))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                return reader.ReadToEnd();
-                //results = serializer.Deserialize<NewsSearch>(jsonReader).NewsResults;
+                results = serializer.Deserialize<NewsSearch>(jsonReader).NewsResults;
             }
 
-            //return results;
+            return results;
+        }
+
+        public static SentimentResponse GetSentimentResponse(List<NewsResult> newsResults)
+        {
+            var sentimentResponse = new SentimentResponse();
+            var sentimentRequest = new SentimentRequest();
+            sentimentRequest.Documents = new List<Document>();
+            foreach (var result in newsResults)
+            {
+                sentimentRequest.Documents.Add(new Document { Id = result.Headline, Text = result.Summary });
+            }
+
+            var webClient = new WebClient();
+            //webClient.Headers.Add("Ocp-Apim-Subscription-Key", "0f2573c2204648789be5302eee10aa37"); //for bing search 7.0
+            webClient.Headers.Add("Ocp-Apim-Subscription-Key", "fe924fc1af744771b2a49487124cb777");
+            webClient.Headers.Add(HttpRequestHeader.Accept, "application/json");
+            webClient.Headers.Add(HttpRequestHeader.ContentType, "application/json");
+            string requestJson = JsonConvert.SerializeObject(sentimentRequest);
+            byte[] requestBytes = Encoding.UTF8.GetBytes(requestJson);
+            byte[] response = webClient.UploadData("https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment", requestBytes);
+            string sentiments = Encoding.UTF8.GetString(response);
+            sentimentResponse = JsonConvert.DeserializeObject<SentimentResponse>(sentiments);
+            return sentimentResponse;
         }
     }
 }
-
-//            webClient.Headers.Add("Ocp-Apim-Subscription-Key", "17b5242629a44fd1982cdcde31cc1a14");
-
-/*https://api.cognitive.microsoft.com/api/v7/entities/c168339b-1dba-b3de-5a73-fc3110ede90f
-
-https://api.cognitive.microsoft.com/bing/v7.0/news/search?q=
-
-'Ocp-Apim-Subscription-Key': 'd075692d853c4387950f76a53e21cbaa'
-
-deacf907f3344a08908224848d44bf3d
-
-370c0d56b9837807aef6962ddba4493f
-
-----
-
-https://api.cognitive.microsoft.com/bing/v7.0/news
-
-https://api.cognitive.microsoft.com/bing/v7.0/spellcheck
-
-https://api.cognitive.microsoft.com/bing/v7.0/videos
-
-https://api.cognitive.microsoft.com/bing/v7.0
-
-Key 1: ee1806bcf76b4465b828f6d070ef8afd
-
-Key 2: 1faa925e2e524f56aef350cf985f58f8
-
-----
-bingSearchAPI
-
-8jhH8TwVCHdDiWxXYgC5KqyEmChYTKW0kkFngbVYnH8
-
-Utu7oE4xxDzx44gHnZY4QMjDJwAXS3x56D7fS9m2q58
-
-vMxn7HtSEMFKZPHMYO+ULN3YfePDenhDoPA22uULpyU
-
-*/

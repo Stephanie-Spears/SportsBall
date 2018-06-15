@@ -44,6 +44,8 @@ namespace SportsBall
 
         public string category { get; set; }
         public Clusteredarticle[] clusteredArticles { get; set; }
+
+        public double SentimentScore { get; set; }
     }
 
     public class Image
